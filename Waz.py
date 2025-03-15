@@ -1,5 +1,4 @@
 import pygame
-from pygame.sprite import _Group
 from Kierunek import Kierunek
 
 class Waz(pygame.sprite.Sprite):

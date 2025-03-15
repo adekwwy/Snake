@@ -2,6 +2,8 @@ import pygame
 import random
 import time
 from Jablko import Jablko
+from Kierunek import Kierunek
+from Waz import Waz
 
 SZEROKOSC_EKRANU = 800
 WYSOKOSC_EKRANU = 608
@@ -24,6 +26,12 @@ pygame.init()
 ekran = pygame.display.set_mode([SZEROKOSC_EKRANU, WYSOKOSC_EKRANU])
 zegar = pygame.time.Clock()
 
+#wąż
+waz = Waz()
+#tworzymy zdarzenie służące do przemieszczania się węża, ktore będzie wykoanywać się co 200ms
+PORUSZ_WEZEM = pygame.USEREVENT + 1
+pygame.time.set_timer(PORUSZ_WEZEM, 200)
+
 #jablko
 jablko = Jablko()
 jablka = pygame.sprite.Group()
@@ -41,7 +49,10 @@ while gra_dziala:
     #rysowanie tła
     ekran.blit(tlo, (0, 0))
     
-    #eysowane jabłek
+    #rysowanie głowy węża
+    ekran.blit(waz.obraz, waz.rect)
+
+    #rysowanie jabłek
     for jablko in jablka:
         ekran.blit(jablko.obraz, jablko.rect)
 
